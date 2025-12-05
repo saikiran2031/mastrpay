@@ -9,9 +9,16 @@ import { defineConfig } from "vitest/config";
  * @see https://vitest.dev/config/
  */
 export default defineConfig({
+  cacheDir: "./.cache/vite",
   test: {
-    cache: {
-      dir: "./.cache/vitest",
-    },
+    projects: [
+      {
+        extends: "./apps/app/vite.config.ts",
+        test: {
+          name: "app",
+          root: "./apps/app",
+        },
+      },
+    ],
   },
 });
